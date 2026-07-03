@@ -1,0 +1,210 @@
+================================================================================
+PROYECTO ACADÉMICO: ELIJE PERÚ
+PLAN DE TRABAJO, JIRA Y GUÍA DE DESPLIEGUE EN AZURE
+================================================================================
+
+Este documento contiene las tareas sugeridas para Jira (Criterio 1) y la guía
+técnica paso a paso para cumplir con la Integración Continua (Criterio 2), 
+Entrega Continua (Criterio 3) y la publicación en la Nube con Azure (Criterio 4).
+
+--------------------------------------------------------------------------------
+PARTE 1: 10 TAREAS PARA JIRA (CRITERIO 1: SISTEMA DE SEGUIMIENTO DE INCIDENTES)
+--------------------------------------------------------------------------------
+A continuación, se listan 10 tareas detalladas que representan un flujo de trabajo
+típico (To Do / In Progress / Done) para este Sprint del proyecto:
+
+1. [EP-01] Configuración inicial del tablero Jira y flujo de trabajo (Workflow)
+   - Estado: Terminado (Done)
+   - Descripción: Creación del proyecto en Jira, configuración de columnas del 
+     tablero Kanban/Scrum (Por hacer, En proceso, Terminado) y asignación de roles.
+   - Criterio de Aceptación: Tablero accesible para todos los miembros del equipo.
+
+2. [EP-02] Diseño y maquetación responsiva del Frontend con React y Vite
+   - Estado: Terminado (Done)
+   - Descripción: Desarrollar la estructura e interfaz del frontend en React para 
+     mostrar de manera dinámica la lista de candidatos, filtros e información.
+   - Criterio de Aceptación: La interfaz renderiza correctamente en móviles y desktop.
+
+3. [EP-03] Configuración de la tubería de Integración Continua (CI) en GitHub Actions
+   - Estado: Terminado (Done)
+   - Descripción: Crear y configurar un workflow de GitHub Actions que compile el 
+     código frontend en cada Push o Pull Request hacia la rama "main".
+   - Criterio de Aceptación: El pipeline se ejecuta de forma exitosa y detecta fallas.
+
+4. [EP-04] Resolución de advertencias de linter y errores menores en producción
+   - Estado: Terminado (Done)
+   - Descripción: Corregir fallos de sintaxis o advertencias en los archivos de 
+     React para evitar que la compilación (build) falle en el pipeline de CI.
+   - Criterio de Aceptación: El comando 'npm run build' se ejecuta de forma limpia.
+
+5. [EP-05] Creación del recurso Azure Static Web App en el portal de Azure
+   - Estado: En Proceso (In Progress)
+   - Descripción: Acceder al portal de Azure, crear una suscripción académica 
+     e inicializar un recurso de tipo Azure Static Web App para alojar el frontend.
+   - Criterio de Aceptación: Recurso creado en Azure con una URL pública asignada.
+
+6. [EP-06] Configuración de credenciales seguras (Deployment Tokens) en GitHub Secrets
+   - Estado: Por Hacer (To Do)
+   - Descripción: Recuperar el token de despliegue de Azure Static Web App y 
+     configurarlo en la sección Settings -> Secrets -> Actions del repositorio de GitHub.
+   - Criterio de Aceptación: Clave guardada de forma segura bajo el nombre AZURE_STATIC_WEB_APPS_API_TOKEN.
+
+7. [EP-07] Implementación del pipeline de Entrega Continua (CD) a Azure SWA
+   - Estado: Por Hacer (To Do)
+   - Descripción: Modificar el flujo de GitHub Actions para que, tras compilar
+     exitosamente (CI), despliegue automáticamente los artefactos generados en Azure.
+   - Criterio de Aceptación: Los cambios hechos en main se reflejan en vivo en 1-2 minutos.
+
+8. [EP-08] Configuración de variables de entorno de producción en la nube (Azure)
+   - Estado: Por Hacer (To Do)
+   - Descripción: Configurar variables críticas como VITE_API_URL en el panel de 
+     configuración de Azure Static Web App para enlazarla con el backend/API.
+   - Criterio de Aceptación: Las variables de entorno son legibles por la app desplegada.
+
+9. [EP-09] Pruebas de humo (Smoke Tests) en el entorno de Azure desplegado
+   - Estado: Por Hacer (To Do)
+   - Descripción: Realizar pruebas de extremo a extremo (E2E) básicas de navegación, 
+     carga del sitio, interacción y llamadas a la API en producción.
+   - Criterio de Aceptación: Todos los enlaces funcionan y la UI responde sin errores.
+
+10. [EP-10] Cierre del Sprint y exportación del reporte de incidencias
+    - Estado: Por Hacer (To Do)
+    - Descripción: Mover las tareas finalizadas a la columna 'Terminado', generar 
+      el reporte de velocidad de Jira y documentar el éxito del despliegue.
+    - Criterio de Aceptación: Reporte de Jira exportado en PDF/capturas para la entrega.
+
+--------------------------------------------------------------------------------
+PARTE 2: GUÍA DE DESPLIEGUE EN AZURE (CRITERIOS 2, 3 Y 4)
+--------------------------------------------------------------------------------
+
+Dado que tienes una cuenta de Azure y tu frontend está construido sobre React/Vite, 
+la mejor opción por rendimiento, costo (capa gratuita para estudiantes) y simplicidad
+es desplegar usando **Azure Static Web Apps (SWA)**. 
+
+A continuación se detalla la configuración técnica para los Criterios 2, 3 y 4:
+
+### CRITERIO 2: INTEGRACIÓN CONTINUA (CI)
+Tu proyecto ya cuenta con un pipeline en `.github/workflows/main.yml` que valida la 
+construcción del código. 
+
+Asegúrate de que este pipeline se active con cambios en el directorio `frontend/`:
+```yaml
+name: Frontend CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+```
+
+---
+
+### CRITERIO 3 Y 4: ENTREGA CONTINUA (CD) Y DESPLIEGUE EN LA NUBE (AZURE)
+
+Sigue estos pasos prácticos utilizando tu cuenta de Azure:
+
+#### Paso 1: Crear la Azure Static Web App
+1. Entra a https://portal.azure.com/ e inicia sesión.
+2. En la barra de búsqueda escribe **Static Web Apps** y selecciona "Crear".
+3. Rellena los datos básicos:
+   - **Suscripción**: Selecciona tu suscripción académica o personal.
+   - **Grupo de recursos**: Crea uno nuevo llamado `rg-elijeperu`.
+   - **Nombre**: `elije-peru-frontend`
+   - **Plan**: Free (Gratuito)
+   - **Región**: Selecciona la más cercana (ej. East US 2).
+4. En **Detalles de la implementación**:
+   - Selecciona **GitHub** como origen.
+   - Inicia sesión en GitHub y selecciona tu cuenta, el repositorio y la rama principal (`main`).
+5. En **Detalles de la compilación**:
+   - Ajustes preestablecidos: Selecciona **Vite**.
+   - Ubicación de la aplicación (App location): `/frontend`
+   - Ubicación de la API (Api location): Déjalo vacío por ahora.
+   - Ubicación del artefacto (Output location): `dist`
+6. Presiona **Revisar y crear** y luego **Crear**.
+
+#### Paso 2: Configuración del pipeline de CD automático
+Azure creará automáticamente un nuevo archivo workflow de GitHub en tu repositorio, 
+similar a este, encargado de realizar el CD (Entrega Continua):
+
+```yaml
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+          
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          ###### Ubicaciones del monorrepo ######
+          app_location: "/frontend" 
+          api_location: "" 
+          output_location: "dist" 
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Job
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: "close"
+```
+
+*Nota: El token `AZURE_STATIC_WEB_APPS_API_TOKEN` se creará e insertará automáticamente en los secretos del repositorio de GitHub cuando realices la creación desde el Portal de Azure.*
+
+---
+
+### CÓMO MOSTRAR LAS EVIDENCIAS EN TU PROYECTO ACADÉMICO
+
+1. **Evidencia Criterio 1**: Toma captura de pantalla de tu panel de Jira con las 10 tareas distribuidas en las columnas "Por hacer", "En proceso" y "Terminado". Muestra que los IDs de los commits de Git tienen referencias al código (ejemplo: `git commit -m "EP-02: Maquetacion de React completa"`).
+2. **Evidencia Criterio 2**: Toma captura de la pestaña "Actions" en GitHub mostrando el check verde (exitoso) de la ejecución del workflow de integración continua (`main.yml`).
+3. **Evidencia Criterio 3**: Toma captura del workflow de Azure ejecutándose y desplegando los artefactos sin intervención manual tras un push a la rama `main`.
+4. **Evidencia Criterio 4**: Proporciona el enlace público provisto por Azure (ej. `https://mango-sea-03829023.azurestaticapps.net`) y una captura de pantalla del sitio funcionando en el navegador web con su respectivo dominio de Azure.

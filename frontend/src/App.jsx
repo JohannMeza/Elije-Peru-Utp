@@ -94,7 +94,7 @@ export default function App(){
                   border-radius: 6px;
                   font-weight: bold;
                   cursor: pointer;
-                ">Instalar</button>
+                "> Instalar </button>
                 <button id="pwa-close-btn" style="
                   background: rgba(255,255,255,0.2);
                   color: white;
