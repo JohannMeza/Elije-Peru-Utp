@@ -49,7 +49,7 @@ export default function Calendar() {
 	)
 	
 	if (error) return (
-		<div className='max-w-2xl mx-auto p-6'>
+		<div className='max-w-2xl mx-auto p-6 '>
 			<OfflineIndicator isOnline={isOnline} isServiceWorkerReady={isServiceWorkerReady} cacheStatus={cacheStatus} />
 			<div className='bg-red-50 border border-red-200 p-4' style={{borderRadius: '16px'}}>
 				<h3 className='font-semibold text-red-800 mb-2'>Error al cargar el cronograma</h3>
