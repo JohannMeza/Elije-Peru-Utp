@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - prd
-      - qas
-      - dev
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
