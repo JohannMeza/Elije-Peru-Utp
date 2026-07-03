@@ -28,243 +28,220 @@ export default function ElectorInfo() {
   }
 
   return (
-    <div className="container-mobile" style={{
-      padding: '0',
-      borderRadius: '16px',
-      background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
-      minHeight: '100vh'
-    }}>
-      <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10">
-        <div className="bg-white shadow-xl border border-gray-200 p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10" style={{borderRadius: '18px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)'}}>
-      <div className="mb-6">
-        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 mb-2 sm:mb-3 md:mb-4 lg:mb-6 px-1 sm:px-2">🇵🇪 Elecciones Generales 2026: Información Clave para Electores</h1>
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 mb-2 sm:mb-3 md:mb-4 px-1 sm:px-2"><strong>Fecha de la Jornada Electoral:</strong> Domingo, 12 de abril de 2026</p>
-      </div>
+    <>
+      <main className="max-w-[1280px] mx-auto px-6 py-12 space-y-16">
+        {/* Header */}
+        <section className="grid sm:grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[#003770] border border-blue-100">
+              <span className="material-symbols-outlined text-[18px]">how_to_vote</span>
+              <span className="text-xs font-bold uppercase tracking-wider">GUÍA OFICIAL 2026</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#003770] tracking-tight leading-tight">
+              Información Clave para Electores
+            </h1>
+            <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
+              Encuentra tu centro de votación, mesa asignada y mantente informado sobre todos los detalles de las Elecciones Generales del <strong className="text-[#003770]">Domingo, 12 de abril de 2026</strong>.
+            </p>
+          </div>
+          <div className="relative">
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
+              <img
+                alt="Electores votando"
+                className="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9CI4QTYfqTOmyqbjX0BizDQvT8frqiWrKug6thkw8AZdyfnauNjHMcR4rXe8Rdoie1_nA1SE0xDEy_P0T3NoxPnA6lbczgXLFEjsp6oZU5bIm_OKlD9Fo07DZMxaQoTHaVXvCSL4CeHTKYKI2FILI_gh_-Ce7HE24yi2ZrHojM9Ijl8ynkt3AT2MVrBKIlYJ6a_TEvlqbs6-Xm4SLmCk7wnpJTUly2iGYBH83Rt5MxMfxccYfbPGDYNlOPs_pIWSrt639bYqz9VI"
+              />
+            </div>
+          </div>
+        </section>
 
-      <section className="bg-blue-50 border border-blue-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 mb-4 sm:mb-5 md:mb-6 lg:mb-8" style={{borderRadius: '16px', marginTop: '20px sm:24px md:32px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold mb-3 sm:mb-4 md:mb-5 lg:mb-6 text-blue-800 px-1 sm:px-2">🗳️ Consulta tu mesa y geolocalización de donde votar</h2>
-        <p className="text-sm sm:text-base text-gray-700 mb-4">Encuentra tu centro de votación, mesa asignada y ubicación precisa para las Elecciones Generales 2026</p>
-        
-        <div style={{marginTop: '24px'}}>
-          <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 sm:gap-8 mb-6 sm:mb-8">
-            <a 
-              href="https://consultaelectoral.onpe.gob.pe/inicio" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 sm:gap-3 md:gap-4 bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 font-medium px-3 sm:px-4 md:px-5 lg:px-6 py-2 sm:py-3 md:py-4 m-1 sm:m-2 text-xs sm:text-sm md:text-base shadow-md hover:shadow-lg"
-              style={{borderRadius: '12px', minWidth: 'auto'}}
-            >
-              <span className="text-2xl">📋</span>
-              <div>
-                <div className="font-semibold">Ubicación del lugar de votación</div>
-                <div className="text-sm text-blue-100">Consulta con tu DNI - ONPE Oficial</div>
+        {/* 1. Consulta tu mesa y geolocalización */}
+        <section className="space-y-8">
+          <div className="border-l-4 border-[#003770] pl-6">
+            <h2 className="text-3xl font-bold text-[#003770]">
+              Consulta tu local y mesa de votación
+            </h2>
+            <p className="text-slate-600 mt-2 text-lg">
+              Servicios oficiales de la ONPE para las Elecciones Generales 2026
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex flex-col p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 bg-blue-50 text-[#003770] rounded-full flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-2xl">location_on</span>
               </div>
-            </a>
-            
-            <div className="bg-green-600 text-black transition-all duration-200 px-3 sm:px-4 md:px-5 lg:px-6 py-2 sm:py-3 md:py-4 m-1 sm:m-2" style={{borderRadius: '12px', border: '2px solid #16a34a', boxShadow: '0 6px 15px rgba(34, 197, 94, 0.25)'}}>
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">🗺️</span>
-                <div>
-                  <div className="font-semibold text-black">Si eres miembro de mesa</div>
-                  <div className="text-sm text-black">Geolocalización de votaciones</div>
-                </div>
+              <h3 className="text-xl font-bold text-[#003770] mb-2">Público General</h3>
+              <p className="text-slate-500 mb-8 flex-1">
+                Consulta tu lugar de votación exacto utilizando tu número de DNI.
+              </p>
+              <a 
+                href="https://consultaelectoral.onpe.gob.pe/inicio" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-[#003770] text-white text-center px-6 py-3.5 rounded-xl font-semibold hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-blue-900/10"
+              >
+                Consultar Ubicación
+              </a>
+            </div>
+            <div className="flex flex-col p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 bg-green-50 text-green-700 rounded-full flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-2xl">map</span>
               </div>
+              <h3 className="text-xl font-bold text-green-800 mb-2">Miembros de Mesa</h3>
+              <p className="text-slate-500 mb-8 flex-1">
+                Geolocalización precisa de votaciones y herramientas exclusivas.
+              </p>
               <a 
                 href="https://eg2026.onpe.gob.pe/para-electores/elige-tu-local-de-votacion/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-block mt-3 bg-white text-black px-4 py-2 hover:bg-green-50 transition-colors font-medium text-sm"
-                style={{borderRadius: '8px'}}
+                className="bg-green-600 text-white text-center px-6 py-3.5 rounded-xl font-semibold hover:bg-green-700 active:scale-95 transition-all shadow-lg shadow-green-900/10"
               >
-                Acceder al servicio →
+                Acceder al Servicio
               </a>
             </div>
           </div>
+        </section>
 
-          <div className="bg-white border border-blue-200 p-4 sm:p-6" style={{borderRadius: '12px', marginTop: '16px'}}>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-blue-600">ℹ️</span>
-              <strong className="text-blue-800">Información importante:</strong>
-            </div>
-            <ul className="text-xs sm:text-sm text-gray-700 space-y-1">
-              <li>• <strong>Primera opción:</strong> Para consultar tu lugar de votación y mesa específica</li>
-              <li>• <strong>Segunda opción:</strong> Para miembros de mesa y localización geográfica precisa</li>
-              <li>• Ambos servicios son oficiales de ONPE para las Elecciones Generales 2026</li>
-            </ul>
+        {/* 2. Elige tu local */}
+        <section className="bg-yellow-50/50 rounded-3xl p-8 md:p-12 border border-yellow-100 flex flex-col md:flex-row items-center gap-10">
+          <div className="w-24 h-24 bg-yellow-100 rounded-2xl flex items-center justify-center text-yellow-700 shrink-0 shadow-sm">
+            <span className="material-symbols-outlined text-5xl">edit_location_alt</span>
           </div>
-        </div>
-      </section>
+          <div className="space-y-4 flex-1">
+            <div className="inline-block px-3 py-1 rounded-full bg-yellow-200 text-yellow-800 text-xs font-bold tracking-wide uppercase">
+              Lanzamiento Inminente
+            </div>
+            <h3 className="text-3xl font-bold text-[#003770]">
+              ¡Pronto Podrás Elegir Dónde Votar!
+            </h3>
+            <p className="text-slate-600 text-lg">
+              A finales de noviembre de 2025, la ONPE habilitará la plataforma <strong>"Elige Tu Local de Votación" (ETLV)</strong>. Podrás seleccionar hasta 3 locales cercanos a tu domicilio o trabajo utilizando un mapa interactivo.
+            </p>
+          </div>
+        </section>
 
-      {/* ¡Pronto Podrás Elegir Dónde Votar! */}
-      <section className="bg-yellow-50 border border-yellow-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 mb-4 sm:mb-5 md:mb-6 lg:mb-8" style={{borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 text-yellow-800">1. 🗺️ ¡Pronto Podrás Elegir Dónde Votar!</h2>
-        <p className="text-gray-700 mb-4 text-sm sm:text-base">La Oficina Nacional de Procesos Electorales (ONPE) está por habilitar la herramienta más importante para los ciudadanos: <strong>"Elige Tu Local de Votación" (ETLV)</strong>.</p>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full bg-white border border-gray-200" style={{borderRadius: '12px'}}>
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-800 border-b text-xs sm:text-sm">Herramienta</th>
-                <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-800 border-b text-xs sm:text-sm">Acción del Elector</th>
-                <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-800 border-b text-xs sm:text-sm">Estado Actual (Noviembre 2025)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b">
-                <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium text-blue-800 text-xs sm:text-sm">Elige Tu Local de Votación (ETLV)</td>
-                <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-700 text-xs sm:text-sm">Utiliza un mapa interactivo para seleccionar hasta 3 locales cercanos a tu domicilio o trabajo, optimizando tu tiempo el día de la elección.</td>
-                <td className="px-2 sm:px-4 py-2 sm:py-3 text-yellow-700 font-medium text-xs sm:text-sm">🚀 Lanzamiento Inminente: Se proyecta su activación a finales de noviembre de 2025. ¡Atento al portal!</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-medium text-green-800">Consulta tu Local Final</td>
-                <td className="px-4 py-3 text-gray-700">Herramienta para confirmar tu local de votación, dirección y número de mesa asignada por la ONPE.</td>
-                <td className="px-4 py-3 text-gray-600">Estará disponible después de que concluya el plazo del ETLV y la ONPE haga la asignación final.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Noticias y Contexto Político */}
-      <section className="bg-purple-50 border border-purple-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 mb-4 sm:mb-5 md:mb-6 lg:mb-8" style={{borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <h2 className="text-xl font-semibold mb-4 text-purple-800">2. 📰 Noticias y Contexto Político</h2>
-        <p className="text-gray-700 mb-4">Para mantenerte informado sobre el avance de las candidaturas, el desarrollo de las primarias y el análisis político de los comicios:</p>
-        
-        <div className="bg-white p-4 border border-purple-200" style={{borderRadius: '12px'}}>
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">📰</span>
+        <section className="grid sm:grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Main Column */}
+          <div className="lg:col-span-2 space-y-12">
+            
+            {/* Cargos */}
             <div>
-              <p className="font-medium text-purple-800">Cobertura de El Comercio:</p>
-              <a href="https://elcomercio.pe/politica/" target="_blank" rel="noopener noreferrer" 
-                 className="text-purple-600 hover:text-purple-800 hover:underline">
-                Revisa la sección de Política y Elecciones 2026 en el diario El Comercio aquí →
+              <h3 className="text-2xl font-bold text-[#003770] mb-6 flex items-center gap-3">
+                <span className="material-symbols-outlined">account_balance</span>
+                Los Cargos que Elegirás
+              </h3>
+              <div className="space-y-4">
+                <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                  <h4 className="font-bold text-[#003770] text-lg mb-2">Sistema Bicameral</h4>
+                  <p className="text-slate-600">Se restablece el sistema bicameral. Votarás por Presidente, Vicepresidentes, 60 Senadores, 130 Diputados y Representantes al Parlamento Andino.</p>
+                </div>
+                <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                  <h4 className="font-bold text-[#003770] text-lg mb-2">Voto Digital</h4>
+                  <p className="text-slate-600">Se amplía la aplicación del Voto Digital para grupos específicos (militares, policiales, salud, peruanos en el extranjero) modernizando el proceso y asegurando un conteo rápido.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Video Informativo */}
+            <div>
+              <h3 className="text-2xl font-bold text-[#003770] mb-6 flex items-center gap-3">
+                <span className="material-symbols-outlined">play_circle</span>
+                Video Informativo: Guía Electoral
+              </h3>
+              <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-lg">
+                <video controls width="100%" height="auto" preload="metadata" className="w-full aspect-video">
+                  <source src="/videos/Cedula_votacion.mp4" type="video/mp4" />
+                  Tu navegador no soporta la reproducción de video HTML5.
+                </video>
+              </div>
+            </div>
+
+            {/* Documentos */}
+            <div>
+              <h3 className="text-2xl font-bold text-[#003770] mb-6 flex items-center gap-3">
+                <span className="material-symbols-outlined">folder</span>
+                Documentos Oficiales
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { name: 'Guía Presidencial', desc: 'Proceso electoral', file: 'guia-del-elector-2026.pdf', icon: 'how_to_vote' },
+                  { name: 'Guía Congresal', desc: 'Senadores y Diputados', file: 'cronograma-electoral-2026.pdf', icon: 'groups' },
+                  { name: 'Parlamento Andino', desc: 'Representación', file: 'sistema-bicameral-2026.pdf', icon: 'account_balance' },
+                  { name: 'Voto Digital', desc: 'Información técnica', file: 'voto-digital-2026.pdf', icon: 'devices' }
+                ].map((doc, idx) => (
+                  <a key={idx} href={`/documentos/pdfs/${doc.file}`} download={doc.file} className="flex items-center gap-4 p-5 bg-white border border-slate-200 rounded-xl hover:border-[#003770] hover:shadow-md transition-all group">
+                    <div className="w-12 h-12 bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-[#003770] rounded-lg flex items-center justify-center transition-colors">
+                      <span className="material-symbols-outlined">{doc.icon}</span>
+                    </div>
+                    <div>
+                      <p className="font-bold text-slate-800 group-hover:text-[#003770] transition-colors">{doc.name}</p>
+                      <p className="text-sm text-slate-500">{doc.desc}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          {/* Sidebar */}
+          <aside className="space-y-6">
+            
+            {/* Próximos Eventos */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+              <h3 className="text-xl font-bold text-[#003770] mb-6 flex items-center gap-2">
+                <span className="material-symbols-outlined">event</span>
+                Eventos Clave
+              </h3>
+              <div className="relative border-l-2 border-slate-100 ml-3 space-y-8">
+                <div className="relative pl-6">
+                  <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-[9px] top-1 border-4 border-white shadow-sm"></div>
+                  <p className="font-bold text-slate-800">Inscripción Final</p>
+                  <p className="text-sm text-slate-500 mt-1">23 de diciembre de 2025</p>
+                </div>
+                <div className="relative pl-6">
+                  <div className="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1 border-4 border-white shadow-sm"></div>
+                  <p className="font-bold text-slate-800">Sorteo de Miembros</p>
+                  <p className="text-sm text-slate-500 mt-1">29 de enero de 2026</p>
+                </div>
+                <div className="relative pl-6">
+                  <div className="absolute w-4 h-4 bg-slate-300 rounded-full -left-[9px] top-1 border-4 border-white shadow-sm"></div>
+                  <p className="font-bold text-slate-800">Día de las Elecciones</p>
+                  <p className="text-sm text-slate-500 mt-1">12 de abril de 2026</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Noticias El Comercio */}
+            <div className="bg-[#003770] text-white p-8 rounded-2xl shadow-xl shadow-blue-900/10">
+              <h3 className="font-bold text-xl mb-4">Contexto Político</h3>
+              <p className="text-blue-100 mb-6 text-sm leading-relaxed">
+                Mantente informado sobre el avance de las candidaturas y el análisis político de los comicios.
+              </p>
+              <a href="https://elcomercio.pe/politica/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors group">
+                <div className="flex items-center gap-3">
+                  <span className="material-symbols-outlined">newspaper</span>
+                  <span className="font-semibold text-sm">El Comercio (Política)</span>
+                </div>
+                <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </a>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Video Informativo */}
-      <section id="video-tutorial" className="bg-red-50 border border-red-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 mb-4 sm:mb-5 md:mb-6 lg:mb-8" style={{borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <h2 className="text-xl font-semibold mb-4 text-red-800">3. 📺 Video Informativo: Guía Electoral</h2>
-        <p className="text-gray-700 mb-4">Conoce más detalles sobre el proceso electoral 2026:</p>
-        
-        <div className="bg-white p-4 border" style={{borderRadius: '12px'}}>
-          <video 
-            controls
-            width="100%"
-            height="auto"
-            preload="metadata"
-            style={{borderRadius: '8px', maxWidth: '100%', height: 'auto'}}
-          >
-            <source src="/videos/Cedula_votacion.mp4" type="video/mp4" />
-            Tu navegador no soporta la reproducción de video HTML5. 
-            <a href="/videos/Cedula_votacion.mp4" style={{color: '#3b82f6', textDecoration: 'underline'}}>
-              Descargar video
-            </a>
-          </video>
-        </div>
-      </section>
-
-      {/* Los Cargos que Elegirás */}
-      <section className="bg-green-50 border border-green-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 mb-4 sm:mb-5 md:mb-6 lg:mb-8" style={{borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <h2 className="text-xl font-semibold mb-4 text-green-800">4. 🏛️ Los Cargos que Elegirás y Novedades Tecnológicas</h2>
-        
-        <div className="space-y-4">
-          <div className="bg-white p-4 border border-green-200" style={{borderRadius: '12px'}}>
-            <h3 className="font-semibold text-green-800 mb-2">Cargos a Elegir:</h3>
-            <p className="text-gray-700">Se restablece el sistema bicameral. Votarás por <strong>Presidente, Vicepresidentes, 60 Senadores, 130 Diputados y Representantes al Parlamento Andino</strong>.</p>
-          </div>
-          
-          <div className="bg-white p-4 border border-green-200" style={{borderRadius: '12px'}}>
-            <h3 className="font-semibold text-green-800 mb-2">Voto Digital:</h3>
-            <p className="text-gray-700">Se amplía la aplicación del Voto Digital para grupos específicos (militares, policiales, salud, peruanos en el extranjero) para modernizar el proceso y asegurar un conteo más rápido.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Próximos Eventos Clave */}
-      <section className="bg-orange-50 border border-orange-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 mb-4 sm:mb-5 md:mb-6 lg:mb-8" style={{borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <h2 className="text-xl font-semibold mb-4 text-orange-800">5. 🔔 Próximos Eventos Clave</h2>
-        
-        <div className="space-y-3">
-          <div className="bg-white p-4 border border-orange-200" style={{borderRadius: '12px'}}>
-            <div className="flex items-center gap-3">
-              <span className="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">1</span>
-              <div>
-                <p className="font-semibold text-orange-800">Inscripción de Candidatos Finales:</p>
-                <p className="text-gray-700">23 de diciembre de 2025</p>
+            {/* Recomendacion */}
+            <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="material-symbols-outlined text-green-700">lightbulb</span>
+                <span className="font-bold text-green-800">Tip Electoral</span>
               </div>
+              <p className="text-sm text-green-700 leading-relaxed">
+                Visita <a href="https://eg2026.onpe.gob.pe" target="_blank" rel="noopener noreferrer" className="font-bold underline hover:text-green-900">eg2026.onpe.gob.pe</a> a finales de noviembre para ser de los primeros en usar ETLV.
+              </p>
             </div>
-          </div>
-          
-          <div className="bg-white p-4 border border-orange-200" style={{borderRadius: '12px'}}>
-            <div className="flex items-center gap-3">
-              <span className="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">2</span>
-              <div>
-                <p className="font-semibold text-orange-800">Sorteo de Miembros de Mesa:</p>
-                <p className="text-gray-700">29 de enero de 2026. (Podrás consultar si fuiste seleccionado en la misma web de la ONPE)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Documentos para Descargar */}
-      <section className="bg-indigo-50 border border-indigo-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 mb-4 sm:mb-5 md:mb-6 lg:mb-8" style={{borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <h2 className="text-xl font-semibold mb-4 text-indigo-800">📄 Documentos Oficiales para Descargar</h2>
-        <p className="text-gray-700 mb-4">Descarga los documentos oficiales relacionados con las Elecciones Generales 2026:</p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a href="/documentos/pdfs/guia-del-elector-2026.pdf" download="guia-del-elector-2026.pdf" className="flex items-center gap-3 bg-indigo-500 text-black p-4 border border-indigo-200 hover:bg-indigo-600 transition-colors font-semibold" style={{borderRadius: '12px'}}>
-            <span className="text-2xl">📋</span>
-            <div>
-              <p className="font-semibold">Presidenciales</p>
-              <p className="text-sm text-black">Conoce más sobre el proceso electoral</p>
-            </div>
-          </a>
-          
-          <a href="/documentos/pdfs/cronograma-electoral-2026.pdf" download="cronograma-electoral-2026.pdf" className="flex items-center gap-3 bg-green-500 text-black p-4 border border-green-200 hover:bg-green-600 transition-colors font-semibold" style={{borderRadius: '12px'}}>
-            <span className="text-2xl">📊</span>
-            <div>
-              <p className="font-semibold">Congresales</p>
-              <p className="text-sm text-black">Conoce más sobre el proceso electoral</p>
-            </div>
-          </a>
-          
-          <a href="/documentos/pdfs/sistema-bicameral-2026.pdf" download="sistema-bicameral-2026.pdf" className="flex items-center gap-3 bg-purple-500 text-black p-4 border border-purple-200 hover:bg-purple-600 transition-colors font-semibold" style={{borderRadius: '12px'}}>
-            <span className="text-2xl">🏛️</span>
-            <div>
-              <p className="font-semibold">Parlamento Andino</p>
-              <p className="text-sm text-black">Conoce más sobre el proceso electoral</p>
-            </div>
-          </a>
-          
-          <a href="/documentos/pdfs/voto-digital-2026.pdf" download="voto-digital-2026.pdf" className="flex items-center gap-3 bg-blue-500 text-black p-4 border border-blue-200 hover:bg-blue-600 transition-colors font-semibold" style={{borderRadius: '12px'}}>
-            <span className="text-2xl">💻</span>
-            <div>
-              <p className="font-semibold">Voto digital</p>
-              <p className="text-sm text-black">Conoce todo acerca del voto digital</p>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      {/* Recomendación Final */}
-      <section className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8" style={{borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}>
-        <div className="flex items-center gap-3 mb-3">
-          <span className="text-2xl">💡</span>
-          <h2 className="text-xl font-semibold text-blue-800">Recomendación:</h2>
-        </div>
-        <p className="text-gray-700">
-          No olvides visitar el portal oficial de la ONPE para las Elecciones 2026 
-          <a href="https://eg2026.onpe.gob.pe" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium"> 
-            (eg2026.onpe.gob.pe)
-          </a> a finales de noviembre para ser de los primeros en usar la herramienta ETLV y seleccionar tu local de votación.
-        </p>
-      </section>
-        </div>
-      </div>
-    </div>
+          </aside>
+        </section>
+      </main>
+    </>
   )
 }
