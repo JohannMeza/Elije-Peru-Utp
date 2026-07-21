@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NEWS_DATA, OFFICIAL_PLATFORMS_DATA, VOTER_GUIDES_DATA } from '../data/newsData'
+import { get } from '../services/api'
 
 export default function News(){
 	const [items, setItems] = useState([])
@@ -8,11 +9,21 @@ export default function News(){
 
 	useEffect(()=>{
 		setLoading(true)
-		// Simular tiempo de carga
-		setTimeout(() => {
-			setItems(NEWS_DATA)
-			setLoading(false)
-		}, 300)
+		get('/news')
+			.then(res => {
+				const data = res?.data?.news || res?.data?.noticias || res?.data
+				if (Array.isArray(data) && data.length > 0) {
+					setItems(data)
+				} else {
+					setItems(NEWS_DATA)
+				}
+				setLoading(false)
+			})
+			.catch(err => {
+				console.warn('API fetch for news failed, fallback to local data', err)
+				setItems(NEWS_DATA)
+				setLoading(false)
+			})
 	},[])
 
 	if(loading) return (<div><h3 className='font-semibold'>Noticias verificadas</h3><p>Cargando...</p></div>)

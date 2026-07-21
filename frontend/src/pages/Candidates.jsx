@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
-import { CANDIDATES_DATA, PARTIES_DATA } from '../data/electoralData'
 import { Link } from 'react-router-dom'
+import { get } from '../services/api'
 import { useOffline } from '../hooks/useOffline'
 import OfflineIndicator from '../components/OfflineIndicator'
 import CandidateModal from '../components/CandidateModal'
@@ -16,12 +16,7 @@ export default function Candidates(){
 	const [roleFilter, setRoleFilter] = useState('')
 	const [partyFilter, setPartyFilter] = useState('')
 	
-	const { 
-		isOnline, 
-		isServiceWorkerReady, 
-		cacheStatus, 
-		getDataWithFallback 
-	} = useOffline()
+	const { isOnline, isServiceWorkerReady, cacheStatus } = useOffline()
 
 	useEffect(()=>{
 		loadCandidates()
@@ -32,19 +27,19 @@ export default function Candidates(){
 		setError(null)
 		
 		try {
-			// Simular delay de red
-			await new Promise(resolve => setTimeout(resolve, isOnline ? 300 : 100))
-			
-			// Obtener datos con fallback offline
-			const candidatesData = await getDataWithFallback('candidates', CANDIDATES_DATA)
-			
-			setList(candidatesData)
-			setFromCache(!isOnline)
+			const res = await get('/candidates')
+			const candidatesData = res?.data?.candidates || res?.data
+			if (Array.isArray(candidatesData)) {
+				setList(candidatesData)
+			} else {
+				setList([])
+			}
+			setFromCache(!!res?.fromCache)
 			setLoading(false)
-			
 		} catch (e) {
 			console.error('Error cargando candidatos:', e)
-			setError(isOnline ? 'Error de conexión' : 'Datos no disponibles offline')
+			setError('No se pudo conectar con el servidor backend para obtener los candidatos.')
+			setList([])
 			setLoading(false)
 		}
 	}
@@ -143,8 +138,9 @@ export default function Candidates(){
 					<div key={c.id} className="bg-white border border-gray-200 hover:shadow-2xl transition-all duration-300 shadow-md p-4 sm:p-6 md:p-8 mb-6 sm:mb-6 md:mb-8 rounded-[24px]">
 						<div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-2 sm:p-3 md:p-4">
 							<img 
-								src={c.photo_url || '/icon-192.png'} 
+								src={c.photo_url || '/assets/logos/logo_elije_peru.jpg'} 
 								alt={c.name} 
+								onError={(e) => { e.target.onerror = null; e.target.src = '/assets/logos/logo_elije_peru.jpg' }}
 								className='h-14 w-14 min-w-[56px] rounded-2xl object-cover border border-slate-300 mr-3' 
 								style={{
 											width: '50px',

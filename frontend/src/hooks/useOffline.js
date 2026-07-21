@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { get } from '../services/api'
 
 export function useOffline() {
   const [isOnline, setIsOnline] = useState(navigator.onLine)
@@ -166,8 +167,20 @@ export function useOffline() {
   const getDataWithFallback = useCallback(async (dataType, fallbackData) => {
     try {
       if (isOnline) {
-        // Si hay conexión, intentar obtener datos frescos
-        // (aquí irían las llamadas a APIs reales si las hubiera)
+        let endpoint = dataType.startsWith('/') ? dataType : `/${dataType}`
+        if (endpoint === '/calendar') endpoint = '/calendario'
+        try {
+          const res = await get(endpoint)
+          if (res && res.data) {
+            const payload = res.data
+            const dataList = payload.candidates || payload.partidos || payload.calendar || payload.calendario || payload.news || payload.noticias || payload.estaciones || (Array.isArray(payload) ? payload : null)
+            if (Array.isArray(dataList) && dataList.length > 0) {
+              return dataList
+            }
+          }
+        } catch (e) {
+          console.warn(`API fetch for ${endpoint} failed, falling back to local data`, e)
+        }
         return fallbackData
       } else {
         // Offline: buscar en cache
@@ -178,7 +191,6 @@ export function useOffline() {
           const data = await response.json()
           return data
         } else {
-          // Si no hay datos en cache, usar fallback local
           return fallbackData
         }
       }

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { get } from '../services/api'
 
 const PARTIES_OFFICIAL_DATA = [
   {
@@ -131,10 +132,21 @@ export default function Parties(){
 
   useEffect(()=>{
     setLoading(true)
-    setTimeout(() => {
-      setList(PARTIES_OFFICIAL_DATA)
-      setLoading(false)
-    }, 300)
+    get('/partidos')
+      .then(res => {
+        const data = res?.data?.partidos || res?.data?.parties || res?.data
+        if (Array.isArray(data) && data.length > 0) {
+          setList(data)
+        } else {
+          setList(PARTIES_OFFICIAL_DATA)
+        }
+        setLoading(false)
+      })
+      .catch(err => {
+        console.warn('API fetch for partidos failed, fallback to local data', err)
+        setList(PARTIES_OFFICIAL_DATA)
+        setLoading(false)
+      })
   },[])
 
   if(loading) return (<div><h3 className='font-semibold'>Agrupaciones Políticas</h3><p>Cargando...</p></div>)

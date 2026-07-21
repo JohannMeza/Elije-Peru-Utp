@@ -10,7 +10,7 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./backend/migrations:/docker-entrypoint-initdb.d:ro
     ports:
-      - '5432:5432'
+      - '5434:5432'
 
   backend:
     build: ./backend
@@ -31,7 +31,7 @@ services:
     build:
       context: ./frontend
       args:
-        VITE_API_URL: 'http://backend:4000'
+        VITE_API_URL: 'http://localhost:4000'
     ports:
       - '5173:80'
     depends_on:

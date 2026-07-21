@@ -1,0 +1,1 @@
+-- Archivo obsoleto. Las semillas activas se encuentran en seed.sql
