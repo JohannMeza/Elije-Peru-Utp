@@ -128,7 +128,7 @@ export default function Header({online, serviceWorkerReady}){
           <div style={{display:'flex',alignItems:'center',gap:12}}>
             <img src="/assets/logos/logo_elije_peru.jpg" alt="Elije Perú - Logo" className="w-10 h-10 rounded"/>
             <div>
-              <div style={{fontWeight:800,fontSize:20}}>Elije Perú</div>
+              <div style={{fontWeight:800,fontSize:20}}>Elije Perú (Azure VM)</div>
               <div style={{fontSize:12,opacity:0.9}}>Elecciones Generales 2026</div>
             </div>
           </div>
